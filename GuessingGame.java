@@ -52,17 +52,21 @@ public class GuessingGame {
     }
 
     //checks that the player enters a interger between 1 and 100
-    public static Integer checkValidInput(Scanner input) {
+    public static int checkValidInput(Scanner input) {
         int guess;
-        
-        do {
+
+        while (true) {
             System.out.print("Enter your guess (between 1 and 100): ");
-            while (!input.hasNextInt()) {//if the input is not an Int between 1 and 100 the player gets an error
-                System.out.print("Invalid input. Enter a number between 1 and 100: ");
-                input.next();
-            }
-            guess = input.nextInt();
-        } while (guess < 1 || guess > 100);
+            if (input.hasNextInt()) {// Check if the input is an integer
+                guess = input.nextInt();
+                if (guess >= 1 && guess <= 100) {// Check if the integer is within 1 to 100
+                    break; // Exit the loop if the input is a valid integer
+                } else {
+                    System.out.print("Invalid input. Enter a number between 1 and 100: ");//error message if input is not valid
+                }
+            } 
+        }
+
         return guess;
     }
 
