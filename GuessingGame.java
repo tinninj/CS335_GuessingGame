@@ -5,42 +5,45 @@ public class GuessingGame {
         Scanner input = new Scanner(System.in);
         Random random = new Random();
 
-        int correctNum = random.nextInt(100) + 1;
-        int maxTurns = 3;
+        int correctNum = random.nextInt(100) + 1;//create random number
+        int maxTurns = 3; //max turn each player has to guess
 
-        int currentTurn = 1;
-        int player1Guess;
+        int currentTurn = 1; //initialize player turn
+        int player1Guess; //create player1 and player2 guess
         int player2Guess;
-
+        
+        //runs the instructions for the players at the start of the game
         instructions();
-
+        
+        //loops as long as the player doesn't run out of turns
         while (currentTurn <= maxTurns) {
             System.out.println("Player 1, it's your turn. What is your guess?");
-            player1Guess = checkValidInput(input);
+            player1Guess = checkValidInput(input);//checks if the player input is valid
 
             if (player1Guess == correctNum) {
-                System.out.println("Player 1 wins! The correct answer was " + correctNum);
+                System.out.println("Player 1 wins! The correct answer was " + correctNum);//prints if player guesses correctly
                 return;
             } else {
-                getHint(player1Guess, correctNum);
+                getHint(player1Guess, correctNum);//give player a hint if they guess wrong
             }
 
             System.out.println("Player 2, it's your turn. What is your guess?");
-            player2Guess = checkValidInput(input);
+            player2Guess = checkValidInput(input);//checks if the player input is valid
 
             if (player2Guess == correctNum) {
-                System.out.println("Player 2 wins! The correct answer was " + correctNum);
+                System.out.println("Player 2 wins! The correct answer was " + correctNum);//prints if player guesses correctly
                 return;
             } else {
-                getHint(player2Guess, correctNum);
+                getHint(player2Guess, correctNum);//give player a hint if they guess wrong
             }
 
-            currentTurn++;
+            currentTurn++; //increments the turn
         }
 
         System.out.println("Both players lose. The correct answer was " + correctNum);
     }
-
+    
+    //instructions for the game
     public static void instructions() {
         System.out.println("Welcome to the Guessing Game!");
         System.out.println("Two players will take turns guessing a number between 1 and 100.");
@@ -48,12 +51,13 @@ public class GuessingGame {
         System.out.println("If neither player guesses right, then they both lose!");
     }
 
+    //checks that the player enters a interger between 1 and 100
     public static Integer checkValidInput(Scanner input) {
         int guess;
-
+        
         do {
             System.out.print("Enter your guess (between 1 and 100): ");
-            while (!input.hasNextInt()) {
+            while (!input.hasNextInt()) {//if the input is not an Int between 1 and 100 the player gets an error
                 System.out.print("Invalid input. Enter a number between 1 and 100: ");
                 input.next();
             }
@@ -62,6 +66,7 @@ public class GuessingGame {
         return guess;
     }
 
+    //gives the player a hint 
     public static void getHint(int guess, int correctNum) {
         if (guess < correctNum) {
             System.out.println("Your guess is too low. Try again!");
