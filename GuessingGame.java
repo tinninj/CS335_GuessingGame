@@ -71,8 +71,8 @@ public class GuessingGame {
     }
 
     //gives the player a hint 
-    public static void getHint(int guess, int correctNum) {
-        if (guess < correctNum) {
+    public static void getHint(int g, int c) {
+        if (g < c) {
             System.out.println("Your guess is too low. Try again!");
             System.out.println();
         } else {
